@@ -57,7 +57,7 @@ class Settings(BaseSettings):
         description="Comma-separated or newline-separated list of Gemini API Keys for rotation"
     )
     GEMINI_MODEL: str = Field(
-        default="gemini-3.1-flash-lite",
+        default="gemini-3.5-flash-lite",
         description="Gemini Model Identifier"
     )
 
