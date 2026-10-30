@@ -1,0 +1,430 @@
+[
+  {
+    "id": "93c00987-34b9-4fe1-b305-226bd591870f",
+    "name": "Android Development",
+    "category": "Mobile Development",
+    "aliases": [
+      "android",
+      "kotlin android"
+    ]
+  },
+  {
+    "id": "c654fd1a-ea2e-4467-83b2-86154cbfea34",
+    "name": "AWS",
+    "category": "Cloud & DevOps",
+    "aliases": [
+      "amazon web services",
+      "ec2",
+      "s3"
+    ]
+  },
+  {
+    "id": "568b3d78-43a7-4ecb-baad-2b7eb846d1d5",
+    "name": "C",
+    "category": "Programming Languages",
+    "aliases": [
+      "c language"
+    ]
+  },
+  {
+    "id": "cb1f354f-c77a-4b5f-8caa-4f158e1cf701",
+    "name": "C++",
+    "category": "Programming Languages",
+    "aliases": [
+      "cpp",
+      "c plus plus"
+    ]
+  },
+  {
+    "id": "ff7754e7-b5f8-497a-a33c-295882fc0312",
+    "name": "CI/CD",
+    "category": "Cloud & DevOps",
+    "aliases": [
+      "continuous integration",
+      "github actions",
+      "jenkins"
+    ]
+  },
+  {
+    "id": "bbf3b17f-2c68-46d0-9008-28f6bf3cfdbc",
+    "name": "Computer Networks",
+    "category": "Core CS",
+    "aliases": [
+      "networking",
+      "cn",
+      "tcp/ip"
+    ]
+  },
+  {
+    "id": "29288e30-3c25-4efb-9b85-42237040ed33",
+    "name": "Computer Vision",
+    "category": "AI & Data Science",
+    "aliases": [
+      "cv",
+      "opencv",
+      "image processing"
+    ]
+  },
+  {
+    "id": "9e832c21-e270-4d40-ac70-513464a9b2e2",
+    "name": "Cybersecurity",
+    "category": "Cybersecurity",
+    "aliases": [
+      "infosec",
+      "information security"
+    ]
+  },
+  {
+    "id": "d49b12f5-3e0a-492d-bcb9-8f87f5fd43c2",
+    "name": "Data Science & Analytics",
+    "category": "AI & Data Science",
+    "aliases": [
+      "data analytics",
+      "eda",
+      "data analysis"
+    ]
+  },
+  {
+    "id": "5d7597fc-9a7b-436c-bf79-b1e31fe41715",
+    "name": "Data Structures & Algorithms",
+    "category": "Core CS",
+    "aliases": [
+      "dsa",
+      "data structures",
+      "algorithms"
+    ]
+  },
+  {
+    "id": "072b4671-7b2d-4204-87d2-d11dfa77f366",
+    "name": "Database Management Systems",
+    "category": "Core CS",
+    "aliases": [
+      "dbms",
+      "rdbms"
+    ]
+  },
+  {
+    "id": "cde68394-a1d1-4bfb-87e6-8d74930760d6",
+    "name": "Deep Learning",
+    "category": "AI & Data Science",
+    "aliases": [
+      "dl",
+      "neural networks"
+    ]
+  },
+  {
+    "id": "c9ec60b1-556f-4aa4-b2e9-9ea165382034",
+    "name": "Django",
+    "category": "Web Development",
+    "aliases": [
+      "django rest framework",
+      "drf"
+    ]
+  },
+  {
+    "id": "14ceab66-2ec2-4c94-8ead-66f6c3763fbe",
+    "name": "Docker",
+    "category": "Cloud & DevOps",
+    "aliases": [
+      "containerization",
+      "containers"
+    ]
+  },
+  {
+    "id": "e9c2f154-4b7e-4b89-b9ef-4e707f16bf8b",
+    "name": "Ethical Hacking",
+    "category": "Cybersecurity",
+    "aliases": [
+      "penetration testing",
+      "pentesting",
+      "vapt"
+    ]
+  },
+  {
+    "id": "6d2e6c7b-4957-4df2-9d61-b264af44cec0",
+    "name": "FastAPI",
+    "category": "Web Development",
+    "aliases": [
+      "fast api",
+      "fastapi python"
+    ]
+  },
+  {
+    "id": "07c13c24-5fda-41ba-8d29-83ba7beef0ce",
+    "name": "Flutter",
+    "category": "Mobile Development",
+    "aliases": [
+      "dart",
+      "flutter mobile"
+    ]
+  },
+  {
+    "id": "323f49bf-29d7-435f-a6bb-c63e478711b3",
+    "name": "Git & GitHub",
+    "category": "DevOps & Tools",
+    "aliases": [
+      "git",
+      "github",
+      "version control"
+    ]
+  },
+  {
+    "id": "39b452e4-c9a2-4672-abab-3a29e56956d2",
+    "name": "Go",
+    "category": "Programming Languages",
+    "aliases": [
+      "golang"
+    ]
+  },
+  {
+    "id": "108ca238-7249-458b-90ef-d8c98a0e865b",
+    "name": "Google Cloud Platform",
+    "category": "Cloud & DevOps",
+    "aliases": [
+      "gcp"
+    ]
+  },
+  {
+    "id": "21ad1834-7675-4a37-94f2-385aa8a41a26",
+    "name": "HTML/CSS",
+    "category": "Web Development",
+    "aliases": [
+      "html",
+      "css",
+      "html5",
+      "css3"
+    ]
+  },
+  {
+    "id": "e77988eb-1efa-407f-a703-a38571c00b3b",
+    "name": "Java",
+    "category": "Programming Languages",
+    "aliases": [
+      "core java",
+      "java8"
+    ]
+  },
+  {
+    "id": "75ccb67c-192e-4a1f-8fb2-bc82331a4430",
+    "name": "JavaScript",
+    "category": "Programming Languages",
+    "aliases": [
+      "js",
+      "es6",
+      "javascript"
+    ]
+  },
+  {
+    "id": "dd80d14e-39ff-4f0e-b551-df5ada952348",
+    "name": "Kubernetes",
+    "category": "Cloud & DevOps",
+    "aliases": [
+      "k8s"
+    ]
+  },
+  {
+    "id": "a373e1d5-22eb-4d52-baf6-714d5684be07",
+    "name": "Linux",
+    "category": "DevOps & Tools",
+    "aliases": [
+      "ubuntu",
+      "bash",
+      "shell scripting"
+    ]
+  },
+  {
+    "id": "f6147367-86a8-4de9-896f-a7fa1915a6f1",
+    "name": "Machine Learning",
+    "category": "AI & Data Science",
+    "aliases": [
+      "ml",
+      "machine-learning"
+    ]
+  },
+  {
+    "id": "767c08d2-1f22-47ec-8439-f51fc0343827",
+    "name": "Microsoft Azure",
+    "category": "Cloud & DevOps",
+    "aliases": [
+      "azure"
+    ]
+  },
+  {
+    "id": "0172b5cc-ee9b-4e25-b885-551c79a7587e",
+    "name": "Natural Language Processing",
+    "category": "AI & Data Science",
+    "aliases": [
+      "nlp",
+      "llm"
+    ]
+  },
+  {
+    "id": "49e17c42-3e45-4c4d-b200-3ffe1a94db1c",
+    "name": "Network Security",
+    "category": "Cybersecurity",
+    "aliases": [
+      "firewalls",
+      "wireshark"
+    ]
+  },
+  {
+    "id": "b51a5ea6-89ca-423f-bf0f-51f63e9723ba",
+    "name": "Next.js",
+    "category": "Web Development",
+    "aliases": [
+      "nextjs"
+    ]
+  },
+  {
+    "id": "56115b93-8ccd-453f-993d-c3fbbb80a468",
+    "name": "Node.js",
+    "category": "Web Development",
+    "aliases": [
+      "nodejs",
+      "node"
+    ]
+  },
+  {
+    "id": "53f649d6-4cdb-43ca-aee3-3da458ca5b97",
+    "name": "Object Oriented Programming",
+    "category": "Core CS",
+    "aliases": [
+      "oops",
+      "oop"
+    ]
+  },
+  {
+    "id": "c4d8223c-e00e-43aa-b77f-038fd70962cf",
+    "name": "Operating Systems",
+    "category": "Core CS",
+    "aliases": [
+      "os",
+      "linux internals"
+    ]
+  },
+  {
+    "id": "ce4ad68f-5366-4de5-8051-8a0ff2dca4e8",
+    "name": "Pandas & NumPy",
+    "category": "AI & Data Science",
+    "aliases": [
+      "pandas",
+      "numpy",
+      "data manipulation"
+    ]
+  },
+  {
+    "id": "5da2539c-1d35-4a92-bf71-11adafcd0dbc",
+    "name": "Python",
+    "category": "Programming Languages",
+    "aliases": [
+      "py",
+      "python3"
+    ]
+  },
+  {
+    "id": "b85cf97d-fe7a-45a6-aed8-1fd763a86ec8",
+    "name": "PyTorch",
+    "category": "AI & Data Science",
+    "aliases": [
+      "torch"
+    ]
+  },
+  {
+    "id": "6b4c5280-4bdd-489f-b80b-4324fc6b4249",
+    "name": "React",
+    "category": "Web Development",
+    "aliases": [
+      "reactjs",
+      "react.js"
+    ]
+  },
+  {
+    "id": "e036dd58-9629-4783-87ae-6125a3a52f93",
+    "name": "React Native",
+    "category": "Mobile Development",
+    "aliases": [
+      "rn"
+    ]
+  },
+  {
+    "id": "04dbbfaa-b27c-41f3-a600-f7a9b4eeeab3",
+    "name": "REST APIs",
+    "category": "Web Development",
+    "aliases": [
+      "restful api",
+      "api development"
+    ]
+  },
+  {
+    "id": "3f4826c5-b57a-40ab-8775-64ec66ccc3f3",
+    "name": "Rust",
+    "category": "Programming Languages",
+    "aliases": [
+      "rustlang"
+    ]
+  },
+  {
+    "id": "a86c9f85-1d35-4845-942b-9ffbea5b0f58",
+    "name": "Scikit-Learn",
+    "category": "AI & Data Science",
+    "aliases": [
+      "sklearn"
+    ]
+  },
+  {
+    "id": "ef9b4663-0557-4fbe-ba11-d34c4013bdc1",
+    "name": "SQL",
+    "category": "Programming Languages",
+    "aliases": [
+      "structured query language",
+      "postgres",
+      "mysql"
+    ]
+  },
+  {
+    "id": "a87f22b7-a700-4c8b-8c7c-90040f510f97",
+    "name": "System Design",
+    "category": "Core CS",
+    "aliases": [
+      "high level design",
+      "low level design",
+      "distributed systems"
+    ]
+  },
+  {
+    "id": "2f3655b6-91e2-481e-8be0-ba1e5f328185",
+    "name": "Tailwind CSS",
+    "category": "Web Development",
+    "aliases": [
+      "tailwind",
+      "tailwindcss"
+    ]
+  },
+  {
+    "id": "a6fa903e-b1a5-4b8e-a85a-156c70abe0c8",
+    "name": "TensorFlow",
+    "category": "AI & Data Science",
+    "aliases": [
+      "tf",
+      "keras"
+    ]
+  },
+  {
+    "id": "4cfdc7d5-6092-4fb6-b13b-3a87e211743a",
+    "name": "TypeScript",
+    "category": "Programming Languages",
+    "aliases": [
+      "ts"
+    ]
+  },
+  {
+    "id": "80996208-00e6-416e-a24e-79a99c892afb",
+    "name": "UI/UX Design",
+    "category": "Design & Product",
+    "aliases": [
+      "ui design",
+      "ux design",
+      "figma"
+    ]
+  }
+]

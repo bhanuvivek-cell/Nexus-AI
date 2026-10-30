@@ -1,0 +1,886 @@
+[
+  {
+    "id": "11111111-1111-1111-1111-111111111101",
+    "title": "Google Summer of Code (GSoC) 2026 Contributor",
+    "provider": "Google",
+    "opportunity_type": "open_source",
+    "description": "Google Summer of Code is a global, online program focused on bringing new contributors into open source software development. Contributors work with open source organizations on a 12+ week programming project under the guidance of experienced mentors.",
+    "location": "Remote",
+    "work_mode": "remote",
+    "mandatory_requirements": {
+      "degrees": [
+        "BTech",
+        "BE",
+        "BCA",
+        "BSc",
+        "MTech",
+        "MCA",
+        "Diploma",
+        "Other"
+      ],
+      "graduation_years": [
+        2025,
+        2026,
+        2027,
+        2028
+      ],
+      "mandatory_skills": [
+        "Git & GitHub"
+      ],
+      "min_academic_year": 1
+    },
+    "preferred_qualifications": {
+      "preferred_skills": [
+        "Python",
+        "C++",
+        "Go",
+        "Rust",
+        "Linux"
+      ],
+      "preferred_interests": [
+        "Software Engineering",
+        "Open Source",
+        "AI/ML"
+      ]
+    },
+    "deadline": "2026-04-08T18:00:00+00:00",
+    "stipend_amount": 180000,
+    "stipend_type": "fixed",
+    "stipend_currency": "INR",
+    "official_apply_url": "https://summerofcode.withgoogle.com",
+    "source_url": "https://summerofcode.withgoogle.com",
+    "source_name": "Google Open Source Programs Office",
+    "first_seen": "2026-10-27T16:11:12.242684+00:00",
+    "last_checked": "2026-10-27T16:11:12.242684+00:00",
+    "verification_status": "verified",
+    "listing_status": "open",
+    "embedding": null,
+    "created_at": "2026-10-27T16:11:12.242684+00:00",
+    "updated_at": "2026-10-27T16:11:12.242684+00:00",
+    "skills": [
+      {
+        "id": "323f49bf-29d7-435f-a6bb-c63e478711b3",
+        "name": "Git & GitHub",
+        "category": "DevOps & Tools",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "5da2539c-1d35-4a92-bf71-11adafcd0dbc",
+        "name": "Python",
+        "category": "Programming Languages",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "cb1f354f-c77a-4b5f-8caa-4f158e1cf701",
+        "name": "C++",
+        "category": "Programming Languages",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "39b452e4-c9a2-4672-abab-3a29e56956d2",
+        "name": "Go",
+        "category": "Programming Languages",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "a373e1d5-22eb-4d52-baf6-714d5684be07",
+        "name": "Linux",
+        "category": "DevOps & Tools",
+        "requirement_type": "preferred"
+      }
+    ],
+    "is_saved": false,
+    "application_stage": null
+  },
+  {
+    "id": "11111111-1111-1111-1111-111111111102",
+    "title": "Smart India Hackathon (SIH) 2026 \u2014 Software Edition",
+    "provider": "Ministry of Education & AICTE",
+    "opportunity_type": "hackathon",
+    "description": "Nationwide initiative by the Ministry of Education Innovation Cell and AICTE providing students a platform to solve pressing problems of ministries, departments, and industries with product innovation.",
+    "location": "Pan-India",
+    "work_mode": "hybrid",
+    "mandatory_requirements": {
+      "degrees": [
+        "BTech",
+        "BE",
+        "MCA",
+        "BCA",
+        "BSc",
+        "MTech"
+      ],
+      "graduation_years": [
+        2025,
+        2026,
+        2027,
+        2028
+      ],
+      "mandatory_skills": [
+        "Data Structures & Algorithms"
+      ],
+      "min_academic_year": 1
+    },
+    "preferred_qualifications": {
+      "preferred_skills": [
+        "React",
+        "Python",
+        "Node.js",
+        "Machine Learning",
+        "FastAPI"
+      ],
+      "preferred_interests": [
+        "Web Development",
+        "AI/ML",
+        "Software Engineering"
+      ]
+    },
+    "deadline": "2026-10-15T23:59:59+00:00",
+    "stipend_amount": 100000,
+    "stipend_type": "prize_pool",
+    "stipend_currency": "INR",
+    "official_apply_url": "https://www.sih.gov.in",
+    "source_url": "https://www.sih.gov.in",
+    "source_name": "Ministry of Education Innovation Cell",
+    "first_seen": "2026-10-27T16:11:12.242684+00:00",
+    "last_checked": "2026-10-27T16:11:12.242684+00:00",
+    "verification_status": "verified",
+    "listing_status": "open",
+    "embedding": null,
+    "created_at": "2026-10-27T16:11:12.242684+00:00",
+    "updated_at": "2026-10-27T16:11:12.242684+00:00",
+    "skills": [
+      {
+        "id": "5d7597fc-9a7b-436c-bf79-b1e31fe41715",
+        "name": "Data Structures & Algorithms",
+        "category": "Core CS",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "5da2539c-1d35-4a92-bf71-11adafcd0dbc",
+        "name": "Python",
+        "category": "Programming Languages",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "6b4c5280-4bdd-489f-b80b-4324fc6b4249",
+        "name": "React",
+        "category": "Web Development",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "6d2e6c7b-4957-4df2-9d61-b264af44cec0",
+        "name": "FastAPI",
+        "category": "Web Development",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "f6147367-86a8-4de9-896f-a7fa1915a6f1",
+        "name": "Machine Learning",
+        "category": "AI & Data Science",
+        "requirement_type": "preferred"
+      }
+    ],
+    "is_saved": false,
+    "application_stage": null
+  },
+  {
+    "id": "11111111-1111-1111-1111-111111111103",
+    "title": "Technical Consulting & Software Engineering Intern",
+    "provider": "Cisco Systems India",
+    "opportunity_type": "internship",
+    "description": "Join Cisco India engineering teams in Bengaluru to build, test, and automate next-generation routing, cloud security, and distributed networking infrastructure.",
+    "location": "Bengaluru, Karnataka",
+    "work_mode": "hybrid",
+    "mandatory_requirements": {
+      "degrees": [
+        "BTech",
+        "BE",
+        "MTech",
+        "MCA"
+      ],
+      "graduation_years": [
+        2026,
+        2027
+      ],
+      "mandatory_skills": [
+        "Computer Networks",
+        "Python"
+      ],
+      "min_academic_year": 2
+    },
+    "preferred_qualifications": {
+      "preferred_skills": [
+        "Linux",
+        "C++",
+        "Docker",
+        "Data Structures & Algorithms"
+      ],
+      "preferred_interests": [
+        "Cloud and DevOps",
+        "Software Engineering",
+        "Cybersecurity"
+      ]
+    },
+    "deadline": "2026-12-31T23:59:59+00:00",
+    "stipend_amount": 65000,
+    "stipend_type": "fixed",
+    "stipend_currency": "INR",
+    "official_apply_url": "https://jobs.cisco.com",
+    "source_url": "https://jobs.cisco.com/jobs/SearchJobs/India",
+    "source_name": "Cisco Careers India",
+    "first_seen": "2026-10-27T16:11:12.242684+00:00",
+    "last_checked": "2026-10-27T16:11:12.242684+00:00",
+    "verification_status": "verified",
+    "listing_status": "open",
+    "embedding": null,
+    "created_at": "2026-10-27T16:11:12.242684+00:00",
+    "updated_at": "2026-10-27T16:11:12.242684+00:00",
+    "skills": [
+      {
+        "id": "5da2539c-1d35-4a92-bf71-11adafcd0dbc",
+        "name": "Python",
+        "category": "Programming Languages",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "bbf3b17f-2c68-46d0-9008-28f6bf3cfdbc",
+        "name": "Computer Networks",
+        "category": "Core CS",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "cb1f354f-c77a-4b5f-8caa-4f158e1cf701",
+        "name": "C++",
+        "category": "Programming Languages",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "5d7597fc-9a7b-436c-bf79-b1e31fe41715",
+        "name": "Data Structures & Algorithms",
+        "category": "Core CS",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "a373e1d5-22eb-4d52-baf6-714d5684be07",
+        "name": "Linux",
+        "category": "DevOps & Tools",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "14ceab66-2ec2-4c94-8ead-66f6c3763fbe",
+        "name": "Docker",
+        "category": "Cloud & DevOps",
+        "requirement_type": "preferred"
+      }
+    ],
+    "is_saved": false,
+    "application_stage": null
+  },
+  {
+    "id": "11111111-1111-1111-1111-111111111104",
+    "title": "Amazon WOW India \u2014 Software Development Engineering Intern",
+    "provider": "Amazon India",
+    "opportunity_type": "internship",
+    "description": "Amazon WOW is a dedicated diversity initiative designed for women engineering students in India. Selected students participate in technical skill sessions, mentorship, and full-time paid summer internship opportunities.",
+    "location": "Bengaluru / Hyderabad",
+    "work_mode": "hybrid",
+    "mandatory_requirements": {
+      "degrees": [
+        "BTech",
+        "BE",
+        "MCA",
+        "MTech"
+      ],
+      "graduation_years": [
+        2026,
+        2027
+      ],
+      "mandatory_skills": [
+        "Data Structures & Algorithms",
+        "Object Oriented Programming"
+      ],
+      "min_academic_year": 2
+    },
+    "preferred_qualifications": {
+      "preferred_skills": [
+        "Java",
+        "C++",
+        "Python",
+        "System Design"
+      ],
+      "preferred_interests": [
+        "Software Engineering",
+        "Web Development"
+      ]
+    },
+    "deadline": "2026-11-30T23:59:59+00:00",
+    "stipend_amount": 80000,
+    "stipend_type": "fixed",
+    "stipend_currency": "INR",
+    "official_apply_url": "https://amazon.jobs/content/en/teams/amazon-wow",
+    "source_url": "https://amazon.jobs",
+    "source_name": "Amazon University Relations",
+    "first_seen": "2026-10-27T16:11:12.242684+00:00",
+    "last_checked": "2026-10-27T16:11:12.242684+00:00",
+    "verification_status": "verified",
+    "listing_status": "open",
+    "embedding": null,
+    "created_at": "2026-10-27T16:11:12.242684+00:00",
+    "updated_at": "2026-10-27T16:11:12.242684+00:00",
+    "skills": [
+      {
+        "id": "5d7597fc-9a7b-436c-bf79-b1e31fe41715",
+        "name": "Data Structures & Algorithms",
+        "category": "Core CS",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "53f649d6-4cdb-43ca-aee3-3da458ca5b97",
+        "name": "Object Oriented Programming",
+        "category": "Core CS",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "cb1f354f-c77a-4b5f-8caa-4f158e1cf701",
+        "name": "C++",
+        "category": "Programming Languages",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "e77988eb-1efa-407f-a703-a38571c00b3b",
+        "name": "Java",
+        "category": "Programming Languages",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "a87f22b7-a700-4c8b-8c7c-90040f510f97",
+        "name": "System Design",
+        "category": "Core CS",
+        "requirement_type": "preferred"
+      }
+    ],
+    "is_saved": false,
+    "application_stage": null
+  },
+  {
+    "id": "11111111-1111-1111-1111-111111111105",
+    "title": "ISRO Academic Research Project Internship",
+    "provider": "Indian Space Research Organisation (ISRO)",
+    "opportunity_type": "research",
+    "description": "ISRO Centers (including URSC, VSSC, SAC) offer project training and research internships for Indian engineering and computer science students carrying out curriculum projects in satellite systems, image analysis, and scientific computing.",
+    "location": "Bengaluru, Karnataka",
+    "work_mode": "on_site",
+    "mandatory_requirements": {
+      "degrees": [
+        "BTech",
+        "BE",
+        "MTech",
+        "MCA",
+        "BSc"
+      ],
+      "min_cgpa": 6.84,
+      "graduation_years": [
+        2026,
+        2027
+      ],
+      "mandatory_skills": [
+        "C++",
+        "Python"
+      ],
+      "min_academic_year": 3
+    },
+    "preferred_qualifications": {
+      "preferred_skills": [
+        "Computer Vision",
+        "Machine Learning",
+        "Operating Systems",
+        "Linux"
+      ],
+      "preferred_interests": [
+        "Research",
+        "AI/ML"
+      ]
+    },
+    "deadline": "2026-11-15T17:00:00+00:00",
+    "stipend_amount": 0,
+    "stipend_type": "unpaid",
+    "stipend_currency": "INR",
+    "official_apply_url": "https://www.isro.gov.in/InternshipAndProjects.html",
+    "source_url": "https://www.isro.gov.in",
+    "source_name": "ISRO Human Resources Development",
+    "first_seen": "2026-10-27T16:11:12.242684+00:00",
+    "last_checked": "2026-10-27T16:11:12.242684+00:00",
+    "verification_status": "verified",
+    "listing_status": "open",
+    "embedding": null,
+    "created_at": "2026-10-27T16:11:12.242684+00:00",
+    "updated_at": "2026-10-27T16:11:12.242684+00:00",
+    "skills": [
+      {
+        "id": "5da2539c-1d35-4a92-bf71-11adafcd0dbc",
+        "name": "Python",
+        "category": "Programming Languages",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "cb1f354f-c77a-4b5f-8caa-4f158e1cf701",
+        "name": "C++",
+        "category": "Programming Languages",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "c4d8223c-e00e-43aa-b77f-038fd70962cf",
+        "name": "Operating Systems",
+        "category": "Core CS",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "f6147367-86a8-4de9-896f-a7fa1915a6f1",
+        "name": "Machine Learning",
+        "category": "AI & Data Science",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "29288e30-3c25-4efb-9b85-42237040ed33",
+        "name": "Computer Vision",
+        "category": "AI & Data Science",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "a373e1d5-22eb-4d52-baf6-714d5684be07",
+        "name": "Linux",
+        "category": "DevOps & Tools",
+        "requirement_type": "preferred"
+      }
+    ],
+    "is_saved": false,
+    "application_stage": null
+  },
+  {
+    "id": "11111111-1111-1111-1111-111111111106",
+    "title": "LFX Mentorship \u2014 Linux Foundation Distributed Systems & Cloud",
+    "provider": "The Linux Foundation",
+    "opportunity_type": "open_source",
+    "description": "The LFX Mentorship program matches aspiring open-source developers with mentors from Linux Foundation projects including Kubernetes, CNCF, Hyperledger, and OpenSSF.",
+    "location": "Remote",
+    "work_mode": "remote",
+    "mandatory_requirements": {
+      "degrees": [
+        "BTech",
+        "BE",
+        "BCA",
+        "BSc",
+        "MTech",
+        "MCA",
+        "Diploma"
+      ],
+      "graduation_years": [
+        2025,
+        2026,
+        2027,
+        2028
+      ],
+      "mandatory_skills": [
+        "Git & GitHub",
+        "Linux"
+      ],
+      "min_academic_year": 1
+    },
+    "preferred_qualifications": {
+      "preferred_skills": [
+        "Go",
+        "Kubernetes",
+        "Docker",
+        "Rust",
+        "C"
+      ],
+      "preferred_interests": [
+        "Cloud and DevOps",
+        "Software Engineering"
+      ]
+    },
+    "deadline": "2026-11-20T23:59:59+00:00",
+    "stipend_amount": 240000,
+    "stipend_type": "fixed",
+    "stipend_currency": "INR",
+    "official_apply_url": "https://lfx.linuxfoundation.org/tools/mentorship/",
+    "source_url": "https://lfx.linuxfoundation.org",
+    "source_name": "The Linux Foundation Mentorship Portal",
+    "first_seen": "2026-10-27T16:11:12.242684+00:00",
+    "last_checked": "2026-10-27T16:11:12.242684+00:00",
+    "verification_status": "verified",
+    "listing_status": "open",
+    "embedding": null,
+    "created_at": "2026-10-27T16:11:12.242684+00:00",
+    "updated_at": "2026-10-27T16:11:12.242684+00:00",
+    "skills": [
+      {
+        "id": "323f49bf-29d7-435f-a6bb-c63e478711b3",
+        "name": "Git & GitHub",
+        "category": "DevOps & Tools",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "a373e1d5-22eb-4d52-baf6-714d5684be07",
+        "name": "Linux",
+        "category": "DevOps & Tools",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "39b452e4-c9a2-4672-abab-3a29e56956d2",
+        "name": "Go",
+        "category": "Programming Languages",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "14ceab66-2ec2-4c94-8ead-66f6c3763fbe",
+        "name": "Docker",
+        "category": "Cloud & DevOps",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "dd80d14e-39ff-4f0e-b551-df5ada952348",
+        "name": "Kubernetes",
+        "category": "Cloud & DevOps",
+        "requirement_type": "preferred"
+      }
+    ],
+    "is_saved": false,
+    "application_stage": null
+  },
+  {
+    "id": "11111111-1111-1111-1111-111111111107",
+    "title": "Microsoft Imagine Cup 2026 Innovation Challenge",
+    "provider": "Microsoft",
+    "opportunity_type": "hackathon",
+    "description": "Global student competition empowering student developers to build impactful tech startups utilizing Microsoft Azure, OpenAI, and modern developer tooling.",
+    "location": "Remote",
+    "work_mode": "remote",
+    "mandatory_requirements": {
+      "degrees": [
+        "BTech",
+        "BE",
+        "BCA",
+        "BSc",
+        "MTech",
+        "MCA"
+      ],
+      "graduation_years": [
+        2025,
+        2026,
+        2027,
+        2028
+      ],
+      "mandatory_skills": [
+        "Python"
+      ],
+      "min_academic_year": 1
+    },
+    "preferred_qualifications": {
+      "preferred_skills": [
+        "Microsoft Azure",
+        "React",
+        "Machine Learning",
+        "Natural Language Processing"
+      ],
+      "preferred_interests": [
+        "AI/ML",
+        "Web Development",
+        "Product and business"
+      ]
+    },
+    "deadline": "2027-01-22T23:59:59+00:00",
+    "stipend_amount": 800000,
+    "stipend_type": "prize_pool",
+    "stipend_currency": "INR",
+    "official_apply_url": "https://imaginecup.microsoft.com",
+    "source_url": "https://imaginecup.microsoft.com",
+    "source_name": "Microsoft Student Programs",
+    "first_seen": "2026-10-27T16:11:12.242684+00:00",
+    "last_checked": "2026-10-27T16:11:12.242684+00:00",
+    "verification_status": "verified",
+    "listing_status": "open",
+    "embedding": null,
+    "created_at": "2026-10-27T16:11:12.242684+00:00",
+    "updated_at": "2026-10-27T16:11:12.242684+00:00",
+    "skills": [
+      {
+        "id": "5da2539c-1d35-4a92-bf71-11adafcd0dbc",
+        "name": "Python",
+        "category": "Programming Languages",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "6b4c5280-4bdd-489f-b80b-4324fc6b4249",
+        "name": "React",
+        "category": "Web Development",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "f6147367-86a8-4de9-896f-a7fa1915a6f1",
+        "name": "Machine Learning",
+        "category": "AI & Data Science",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "767c08d2-1f22-47ec-8439-f51fc0343827",
+        "name": "Microsoft Azure",
+        "category": "Cloud & DevOps",
+        "requirement_type": "preferred"
+      }
+    ],
+    "is_saved": false,
+    "application_stage": null
+  },
+  {
+    "id": "11111111-1111-1111-1111-111111111108",
+    "title": "Flipkart GRiD 6.0 \u2014 Software Development Track",
+    "provider": "Flipkart India",
+    "opportunity_type": "hackathon",
+    "description": "Flipkart flagship engineering campus challenge focusing on e-commerce scale problem statements across algorithms, distributed architectures, and generative AI.",
+    "location": "Pan-India",
+    "work_mode": "remote",
+    "mandatory_requirements": {
+      "degrees": [
+        "BTech",
+        "BE",
+        "MTech",
+        "MCA"
+      ],
+      "graduation_years": [
+        2026,
+        2027,
+        2028
+      ],
+      "mandatory_skills": [
+        "Data Structures & Algorithms"
+      ],
+      "min_academic_year": 1
+    },
+    "preferred_qualifications": {
+      "preferred_skills": [
+        "Java",
+        "Python",
+        "System Design",
+        "Database Management Systems"
+      ],
+      "preferred_interests": [
+        "Software Engineering",
+        "AI/ML"
+      ]
+    },
+    "deadline": "2026-11-28T23:59:59+00:00",
+    "stipend_amount": 150000,
+    "stipend_type": "prize_pool",
+    "stipend_currency": "INR",
+    "official_apply_url": "https://unstop.com/competitions/flipkart-grid-60-software-development-track-flipkart-1002220",
+    "source_url": "https://unstop.com",
+    "source_name": "Flipkart Campus Engagement",
+    "first_seen": "2026-10-27T16:11:12.242684+00:00",
+    "last_checked": "2026-10-27T16:11:12.242684+00:00",
+    "verification_status": "verified",
+    "listing_status": "open",
+    "embedding": null,
+    "created_at": "2026-10-27T16:11:12.242684+00:00",
+    "updated_at": "2026-10-27T16:11:12.242684+00:00",
+    "skills": [
+      {
+        "id": "5d7597fc-9a7b-436c-bf79-b1e31fe41715",
+        "name": "Data Structures & Algorithms",
+        "category": "Core CS",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "e77988eb-1efa-407f-a703-a38571c00b3b",
+        "name": "Java",
+        "category": "Programming Languages",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "072b4671-7b2d-4204-87d2-d11dfa77f366",
+        "name": "Database Management Systems",
+        "category": "Core CS",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "a87f22b7-a700-4c8b-8c7c-90040f510f97",
+        "name": "System Design",
+        "category": "Core CS",
+        "requirement_type": "preferred"
+      }
+    ],
+    "is_saved": false,
+    "application_stage": null
+  },
+  {
+    "id": "11111111-1111-1111-1111-111111111109",
+    "title": "Google Cloud Career Readiness \u2014 Associate Cloud Engineer",
+    "provider": "Google Cloud India",
+    "opportunity_type": "certification",
+    "description": "Comprehensive curricular program offered to college students in India providing hands-on Google Cloud Skills Boost labs and 100% sponsored certification exam vouchers.",
+    "location": "Pan-India / Remote",
+    "work_mode": "remote",
+    "mandatory_requirements": {
+      "degrees": [
+        "BTech",
+        "BE",
+        "BCA",
+        "BSc",
+        "MTech",
+        "MCA",
+        "Diploma"
+      ],
+      "graduation_years": [
+        2025,
+        2026,
+        2027,
+        2028
+      ],
+      "mandatory_skills": [
+        "Linux"
+      ],
+      "min_academic_year": 1
+    },
+    "preferred_qualifications": {
+      "preferred_skills": [
+        "Google Cloud Platform",
+        "Docker",
+        "Kubernetes",
+        "SQL"
+      ],
+      "preferred_interests": [
+        "Cloud and DevOps",
+        "Data science and analytics"
+      ]
+    },
+    "deadline": "2026-12-15T23:59:59+00:00",
+    "stipend_amount": 0,
+    "stipend_type": "free_entry",
+    "stipend_currency": "INR",
+    "official_apply_url": "https://cloud.google.com/edu/students",
+    "source_url": "https://cloud.google.com",
+    "source_name": "Google Cloud Education Programs",
+    "first_seen": "2026-10-27T16:11:12.242684+00:00",
+    "last_checked": "2026-10-27T16:11:12.242684+00:00",
+    "verification_status": "verified",
+    "listing_status": "open",
+    "embedding": null,
+    "created_at": "2026-10-27T16:11:12.242684+00:00",
+    "updated_at": "2026-10-27T16:11:12.242684+00:00",
+    "skills": [
+      {
+        "id": "a373e1d5-22eb-4d52-baf6-714d5684be07",
+        "name": "Linux",
+        "category": "DevOps & Tools",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "ef9b4663-0557-4fbe-ba11-d34c4013bdc1",
+        "name": "SQL",
+        "category": "Programming Languages",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "14ceab66-2ec2-4c94-8ead-66f6c3763fbe",
+        "name": "Docker",
+        "category": "Cloud & DevOps",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "dd80d14e-39ff-4f0e-b551-df5ada952348",
+        "name": "Kubernetes",
+        "category": "Cloud & DevOps",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "108ca238-7249-458b-90ef-d8c98a0e865b",
+        "name": "Google Cloud Platform",
+        "category": "Cloud & DevOps",
+        "requirement_type": "preferred"
+      }
+    ],
+    "is_saved": false,
+    "application_stage": null
+  },
+  {
+    "id": "11111111-1111-1111-1111-111111111110",
+    "title": "Tata Crucible Campus Hackathon 2026",
+    "provider": "Tata Group",
+    "opportunity_type": "hackathon",
+    "description": "Prestigious national campus hackathon challenging student innovators to build scalable technology prototypes for smart mobility, renewable energy, and digital commerce.",
+    "location": "Pan-India",
+    "work_mode": "hybrid",
+    "mandatory_requirements": {
+      "degrees": [
+        "BTech",
+        "BE",
+        "MCA",
+        "BSc",
+        "MTech"
+      ],
+      "graduation_years": [
+        2025,
+        2026,
+        2027,
+        2028
+      ],
+      "mandatory_skills": [
+        "Python"
+      ],
+      "min_academic_year": 1
+    },
+    "preferred_qualifications": {
+      "preferred_skills": [
+        "React",
+        "Data Science & Analytics",
+        "System Design"
+      ],
+      "preferred_interests": [
+        "Software Engineering",
+        "Product and business"
+      ]
+    },
+    "deadline": "2026-12-10T23:59:59+00:00",
+    "stipend_amount": 250000,
+    "stipend_type": "prize_pool",
+    "stipend_currency": "INR",
+    "official_apply_url": "https://tatacrucible.com",
+    "source_url": "https://tatacrucible.com",
+    "source_name": "Tata Crucible Secretariat",
+    "first_seen": "2026-10-27T16:11:12.242684+00:00",
+    "last_checked": "2026-10-27T16:11:12.242684+00:00",
+    "verification_status": "verified",
+    "listing_status": "open",
+    "embedding": null,
+    "created_at": "2026-10-27T16:11:12.242684+00:00",
+    "updated_at": "2026-10-27T16:11:12.242684+00:00",
+    "skills": [
+      {
+        "id": "5da2539c-1d35-4a92-bf71-11adafcd0dbc",
+        "name": "Python",
+        "category": "Programming Languages",
+        "requirement_type": "mandatory"
+      },
+      {
+        "id": "a87f22b7-a700-4c8b-8c7c-90040f510f97",
+        "name": "System Design",
+        "category": "Core CS",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "6b4c5280-4bdd-489f-b80b-4324fc6b4249",
+        "name": "React",
+        "category": "Web Development",
+        "requirement_type": "preferred"
+      },
+      {
+        "id": "d49b12f5-3e0a-492d-bcb9-8f87f5fd43c2",
+        "name": "Data Science & Analytics",
+        "category": "AI & Data Science",
+        "requirement_type": "preferred"
+      }
+    ],
+    "is_saved": false,
+    "application_stage": null
+  }
+]

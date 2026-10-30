@@ -58,9 +58,25 @@ class OpportunityService:
         end = start + page_size - 1
         builder = builder.range(start, end)
 
-        res = builder.execute()
-        items = res.data or []
-        total = res.count or len(items)
+        used_fallback = False
+        try:
+            res = builder.execute()
+            items = res.data or []
+            total = res.count or len(items)
+        except Exception as e:
+            logger.warning(f"Supabase opportunities query failed ({e}); using verified offline catalog.")
+            from app.core.catalog import load_fallback_opportunities
+            all_filtered = load_fallback_opportunities(
+                query=query,
+                opp_type=opp_type,
+                work_mode=work_mode,
+                location=location,
+                stipend_filter=stipend_filter,
+                sort_by=sort_by
+            )
+            total = len(all_filtered)
+            items = all_filtered[start:end + 1]
+            used_fallback = True
 
         # Retrieve user saved and applications if authenticated
         saved_set = set(get_user_saved_opportunity_ids(user_id)) if user_id else set()
@@ -80,18 +96,19 @@ class OpportunityService:
         # Format items with skills
         formatted_items = []
         for item in items:
-            raw_opp_skills = item.pop("opportunity_skills", []) or []
-            skills = []
-            for os_item in raw_opp_skills:
-                sk = os_item.get("skills") or {}
-                if sk.get("name"):
-                    skills.append({
-                        "id": sk.get("id"),
-                        "name": sk.get("name"),
-                        "category": sk.get("category"),
-                        "requirement_type": os_item.get("requirement_type", "mandatory"),
-                    })
-            item["skills"] = skills
+            if not used_fallback:
+                raw_opp_skills = item.pop("opportunity_skills", []) or []
+                skills = []
+                for os_item in raw_opp_skills:
+                    sk = os_item.get("skills") or {}
+                    if sk.get("name"):
+                        skills.append({
+                            "id": sk.get("id"),
+                            "name": sk.get("name"),
+                            "category": sk.get("category"),
+                            "requirement_type": os_item.get("requirement_type", "mandatory"),
+                        })
+                item["skills"] = skills
             item["is_saved"] = item["id"] in saved_set
             item["application_stage"] = app_stage_map.get(item["id"])
             formatted_items.append(item)
@@ -110,35 +127,48 @@ class OpportunityService:
         token: Optional[str] = None
     ) -> Optional[Dict[str, Any]]:
         supabase = get_supabase_client(token)
-        res = supabase.table("opportunities").select(
-            "*, opportunity_skills(requirement_type, skills(id, name, category))"
-        ).eq("id", opportunity_id).single().execute()
+        used_fallback = False
+        try:
+            res = supabase.table("opportunities").select(
+                "*, opportunity_skills(requirement_type, skills(id, name, category))"
+            ).eq("id", opportunity_id).single().execute()
+            item = res.data if res else None
+        except Exception as e:
+            logger.warning(f"Supabase opportunity lookup failed ({e}); using offline catalog.")
+            from app.core.catalog import get_fallback_opportunity_by_id
+            item = get_fallback_opportunity_by_id(opportunity_id)
+            used_fallback = True
 
-        if not res.data:
+        if not item:
             return None
-
-        item = res.data
-        raw_opp_skills = item.pop("opportunity_skills", []) or []
         skills = []
         mandatory_skills = []
         preferred_skills = []
 
-        for os_item in raw_opp_skills:
-            sk = os_item.get("skills") or {}
-            if sk.get("name"):
-                skill_obj = {
-                    "id": sk.get("id"),
-                    "name": sk.get("name"),
-                    "category": sk.get("category"),
-                    "requirement_type": os_item.get("requirement_type", "mandatory"),
-                }
-                skills.append(skill_obj)
-                if skill_obj["requirement_type"] == "mandatory":
-                    mandatory_skills.append(skill_obj["name"])
+        if not used_fallback:
+            raw_opp_skills = item.pop("opportunity_skills", []) or []
+            for os_item in raw_opp_skills:
+                sk = os_item.get("skills") or {}
+                if sk.get("name"):
+                    skill_obj = {
+                        "id": sk.get("id"),
+                        "name": sk.get("name"),
+                        "category": sk.get("category"),
+                        "requirement_type": os_item.get("requirement_type", "mandatory"),
+                    }
+                    skills.append(skill_obj)
+                    if skill_obj["requirement_type"] == "mandatory":
+                        mandatory_skills.append(skill_obj["name"])
+                    else:
+                        preferred_skills.append(skill_obj["name"])
+            item["skills"] = skills
+        else:
+            for sk in (item.get("skills") or []):
+                if sk.get("requirement_type") == "mandatory":
+                    mandatory_skills.append(sk["name"])
                 else:
-                    preferred_skills.append(skill_obj["name"])
-
-        item["skills"] = skills
+                    preferred_skills.append(sk["name"])
+            skills = item.get("skills") or []
         item["is_saved"] = False
         item["application_stage"] = None
 

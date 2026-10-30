@@ -18,5 +18,9 @@ async def get_skills(
     if category:
         builder = builder.eq("category", category)
 
-    res = builder.execute()
-    return res.data or []
+    try:
+        res = builder.execute()
+        return res.data or []
+    except Exception as e:
+        from app.core.catalog import load_fallback_skills
+        return load_fallback_skills(query=query, category=category)
