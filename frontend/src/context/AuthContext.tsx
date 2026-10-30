@@ -172,7 +172,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return {
         error: new Error(
           err.message?.toLowerCase().includes('failed to fetch')
-            ? 'Unable to connect to Nexus AI backend. Please ensure the backend is running on port 8000.'
+            ? `Unable to connect to Nexus AI backend at ${API_BASE_URL}. Please check your network connection.`
             : (err.message || 'Login failed. Please check your credentials.')
         ),
       };
@@ -227,7 +227,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return {
         error: new Error(
           err.message?.toLowerCase().includes('failed to fetch')
-            ? 'Unable to connect to Nexus AI backend. Please ensure the backend is running on port 8000.'
+            ? `Unable to connect to Nexus AI backend at ${API_BASE_URL}. Please check your network connection.`
             : (err.message || 'Registration failed. Please try again.')
         ),
       };

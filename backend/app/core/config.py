@@ -62,28 +62,36 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "http://localhost:3000",
-        "http://127.0.0.1:3000"
+        "http://127.0.0.1:3000",
+        "https://nexus-ai-iota-one-18.vercel.app"
     ]
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
     def assemble_cors_origins(cls, v: Any) -> List[str]:
+        default_origins = [
+            "http://localhost:5173",
+            "http://127.0.0.1:5173",
+            "http://localhost:3000",
+            "http://127.0.0.1:3000",
+            "https://nexus-ai-iota-one-18.vercel.app"
+        ]
         if isinstance(v, str):
             v_trimmed = v.strip()
+            if v_trimmed == "*":
+                # With allow_credentials=True, Starlette rejects literal '*',
+                # so we keep our default origins plus the vercel regex matches all vercel apps
+                return default_origins
             if v_trimmed.startswith("[") and v_trimmed.endswith("]"):
                 try:
                     return json.loads(v_trimmed)
                 except Exception:
                     pass
-            return [i.strip() for i in v_trimmed.split(",") if i.strip()]
+            origins = [i.strip() for i in v_trimmed.split(",") if i.strip()]
+            return origins if origins else default_origins
         elif isinstance(v, list):
             return v
-        return [
-            "http://localhost:5173",
-            "http://127.0.0.1:5173",
-            "http://localhost:3000",
-            "http://127.0.0.1:3000"
-        ]
+        return default_origins
     
     # AI/ML Configuration
     EMBEDDING_MODEL_NAME: str = "sentence-transformers/all-MiniLM-L6-v2"

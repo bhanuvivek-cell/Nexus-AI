@@ -1,6 +1,11 @@
 import { supabase } from './supabase';
 
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api/v1';
+// In development (npm run dev), default to local FastAPI on port 8000.
+// In production builds (Vercel), default to the live Render backend.
+// An explicit VITE_API_BASE_URL environment variable always takes precedence.
+export const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV ? 'http://127.0.0.1:8000/api/v1' : 'https://nexus-ai-backend-vj50.onrender.com/api/v1');
 
 export async function apiRequest<T = any>(
   endpoint: string,
@@ -54,7 +59,7 @@ export async function apiRequest<T = any>(
   } catch (err: any) {
     if (err.name === 'TypeError' && err.message?.toLowerCase().includes('failed to fetch')) {
       throw new Error(
-        `Unable to connect to Nexus AI backend at ${API_BASE_URL}. Please ensure the FastAPI backend is running on port 8000.`
+        `Unable to connect to Nexus AI backend at ${API_BASE_URL}. Please check your network connection.`
       );
     }
     throw err;
