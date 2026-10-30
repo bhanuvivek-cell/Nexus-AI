@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+**/node_modules/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+**/.venv/
+venv/
+env/
+ENV/
+
+# Build artifacts
+dist/
+**/dist/
+build/
+*.egg-info/
+.pytest_cache/
+**/.pytest_cache/
+
+# Environment and secrets
+.env
+.env.*
+.env.local
+.env.*.local
+*.env
+backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.*
+
+# Local databases
+nexus_local.db
+**/nexus_local.db
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Antigravity artifacts
+.gemini/
