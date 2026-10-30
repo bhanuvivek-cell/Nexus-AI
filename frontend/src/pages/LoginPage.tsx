@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/ui/Button';
-import { Target, Eye, EyeOff, User as UserIcon } from 'lucide-react';
+import { Target, Eye, EyeOff, User as UserIcon, Sparkles } from 'lucide-react';
 
 export const LoginPage: React.FC = () => {
   const { signIn } = useAuth();
@@ -13,6 +13,7 @@ export const LoginPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSandboxLoading, setIsSandboxLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const from = (location.state as any)?.from?.pathname || '/dashboard';
@@ -37,9 +38,26 @@ export const LoginPage: React.FC = () => {
     }
   };
 
+  const handleSandboxLogin = async () => {
+    setError(null);
+    setIsSandboxLoading(true);
+    try {
+      const { error: signInError } = await signIn('sandbox_demo', 'sandbox123');
+      if (signInError) {
+        setError(signInError.message || 'Failed to sign into Sandbox Demo account.');
+      } else {
+        navigate(from, { replace: true });
+      }
+    } catch (err: any) {
+      setError(err.message || 'An unexpected error occurred during sandbox login.');
+    } finally {
+      setIsSandboxLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+      <div className="w-full max-w-md space-y-6 bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
         {/* Brand header */}
         <div className="text-center">
           <div className="mx-auto w-12 h-12 rounded-xl bg-navy-900 flex items-center justify-center text-saffron-500 mb-3 shadow-xs">
@@ -97,7 +115,7 @@ export const LoginPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600"
+                className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 cursor-pointer"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -108,6 +126,31 @@ export const LoginPage: React.FC = () => {
             Sign In to Account
           </Button>
         </form>
+
+        <div className="relative my-4">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-slate-200" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-white px-2 text-slate-400 font-semibold tracking-wider">Or</span>
+          </div>
+        </div>
+
+        {/* 1-Click Sandbox Demo Account Button */}
+        <div className="space-y-1.5">
+          <button
+            type="button"
+            onClick={handleSandboxLogin}
+            disabled={isLoading || isSandboxLoading}
+            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-emerald-500/40 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-sm font-semibold transition-all shadow-xs hover:shadow-sm cursor-pointer disabled:opacity-60"
+          >
+            <Sparkles className="w-4 h-4 text-emerald-600 animate-pulse" />
+            <span>{isSandboxLoading ? 'Connecting to Sandbox...' : '1-Click Sandbox Demo (Instant Access)'}</span>
+          </button>
+          <p className="text-[11px] text-center text-slate-400">
+            Pre-loaded student profile with verified skills, opportunities & bookmarks
+          </p>
+        </div>
 
         <div className="pt-4 border-t border-slate-100 text-center text-xs text-slate-600">
           New to Nexus AI?{' '}

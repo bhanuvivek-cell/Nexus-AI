@@ -74,7 +74,7 @@ if (-not $backendRunning) {
     Write-Host "  -> Launching FastAPI backend on http://127.0.0.1:$BACKEND_PORT ..." -ForegroundColor Green
     Start-Process `
         -FilePath "cmd.exe" `
-        -ArgumentList "/k", "title Nexus-AI Backend && $pythonExe -m uvicorn app.main:app --host 127.0.0.1 --port $BACKEND_PORT --reload" `
+        -ArgumentList "/k", "title Nexus-AI Backend && `"$pythonExe`" -m uvicorn app.main:app --host 127.0.0.1 --port $BACKEND_PORT --reload" `
         -WorkingDirectory $backendDir
 }
 

@@ -89,8 +89,55 @@ def init_local_db():
         conn.close()
 
 
+def ensure_sandbox_user():
+    """Seeds a ready-to-use sandbox demo student account with prefilled skills and profile."""
+    conn = get_db_connection()
+    try:
+        cur = conn.cursor()
+        row = cur.execute("SELECT id FROM user_accounts WHERE username = 'sandbox_demo'").fetchone()
+        if not row:
+            import hashlib
+            salt = "nexus_sandbox_salt_12345"
+            pw_hash = hashlib.pbkdf2_hmac("sha256", "sandbox123".encode("utf-8"), salt.encode("utf-8"), 100_000)
+            stored_hash = f"{salt}:{pw_hash.hex()}"
+            demo_id = "sandbox-demo-student-id-001"
+            cur.execute("""
+                INSERT OR IGNORE INTO user_accounts (id, username, password_hash, full_name, role)
+                VALUES (?, ?, ?, ?, ?)
+            """, (demo_id, "sandbox_demo", stored_hash, "Sandbox Student", "student"))
+
+            skills = json.dumps([
+                {"name": "Python", "proficiency": "advanced"},
+                {"name": "React", "proficiency": "intermediate"},
+                {"name": "TypeScript", "proficiency": "intermediate"},
+                {"name": "Data Structures & Algorithms", "proficiency": "advanced"},
+                {"name": "FastAPI", "proficiency": "intermediate"}
+            ])
+            interests = json.dumps(["Software Engineering", "AI & Machine Learning", "Full-Stack Development"])
+            goals = json.dumps(["Master DSA & Algorithms", "Build Production AI Web Apps"])
+            prefs = json.dumps({"work_mode": "Remote", "min_stipend": 15000})
+
+            cur.execute("""
+                INSERT OR IGNORE INTO user_profiles (
+                    id, username, display_name, degree, branch, academic_year, graduation_year,
+                    college, location, career_interests, learning_goals, opportunity_preferences,
+                    skills, onboarding_completed
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
+            """, (
+                demo_id, "sandbox_demo", "Sandbox Student", "BTech", "Computer Science & Engineering",
+                3, 2027, "Nexus Institute of Technology", "Bengaluru, India",
+                interests, goals, prefs, skills
+            ))
+            conn.commit()
+    except Exception as e:
+        logger.warning(f"Sandbox user initialization note: {e}")
+    finally:
+        conn.close()
+
+
 # Ensure tables exist on import
 init_local_db()
+ensure_sandbox_user()
 
 
 # -----------------------------------------------------------------------------
