@@ -37,7 +37,7 @@ async def global_exception_handler(request: Request, exc: Exception):
     origin = request.headers.get("origin") or "*"
     return JSONResponse(
         status_code=500,
-        content={"detail": "An internal server error occurred. Please try again later."},
+        content={"detail": f"{type(exc).__name__}: {str(exc)}"},
         headers={
             "Access-Control-Allow-Origin": origin,
             "Access-Control-Allow-Credentials": "true",
