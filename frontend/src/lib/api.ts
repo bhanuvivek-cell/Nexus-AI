@@ -3,10 +3,20 @@ import { supabase } from './supabase';
 // In development (npm run dev), default to local FastAPI on port 8000.
 // In production builds (Vercel), default to the live Render backend.
 // Supports both API_BASE_URL and VITE_API_BASE_URL.
-export const API_BASE_URL =
+const normalizeApiBaseUrl = (url: string): string => {
+  let clean = (url || '').trim().replace(/\/+$/, '');
+  if (!clean.endsWith('/api/v1')) {
+    clean = `${clean}/api/v1`;
+  }
+  return clean;
+};
+
+const rawBaseUrl =
   (import.meta.env as any).API_BASE_URL ||
   import.meta.env.VITE_API_BASE_URL ||
   (import.meta.env.DEV ? 'http://127.0.0.1:8000/api/v1' : 'https://nexus-ai-backend-vj50.onrender.com/api/v1');
+
+export const API_BASE_URL = normalizeApiBaseUrl(rawBaseUrl);
 
 export async function apiRequest<T = any>(
   endpoint: string,

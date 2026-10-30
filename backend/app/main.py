@@ -46,8 +46,9 @@ async def global_exception_handler(request: Request, exc: Exception):
         }
     )
 
-# Include API v1 router
+# Include API v1 router with standard /api/v1 prefix and root fallback
 app.include_router(api_router, prefix=settings.API_V1_STR)
+app.include_router(api_router)
 
 
 @app.get("/")
