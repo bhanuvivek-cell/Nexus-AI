@@ -236,7 +236,7 @@ class GeminiService:
             max_output_tokens=2048,
         )
 
-        models_to_try = [settings.GEMINI_MODEL, "gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]
+        models_to_try = [settings.GEMINI_MODEL, "gemini-3.8-flash", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-1.5-flash"]
         seen = set()
         unique_models = [m for m in models_to_try if not (m in seen or seen.add(m))]
 
@@ -316,7 +316,7 @@ class GeminiService:
             max_output_tokens=2048,
         )
 
-        models_to_try = [settings.GEMINI_MODEL, "gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]
+        models_to_try = [settings.GEMINI_MODEL, "gemini-3.8-flash", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-1.5-flash"]
         seen = set()
         unique_models = [m for m in models_to_try if not (m in seen or seen.add(m))]
 
