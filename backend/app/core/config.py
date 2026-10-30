@@ -50,12 +50,31 @@ class Settings(BaseSettings):
     # Gemini AI Assistant
     GEMINI_API_KEY: str = Field(
         default="",
-        description="Google Gemini API Key for Nexus AI Assistant"
+        description="Google Gemini API Key for Nexus AI Assistant (supports comma-separated keys)"
+    )
+    GEMINI_API_KEYS: str = Field(
+        default="",
+        description="Comma-separated or newline-separated list of Gemini API Keys for rotation"
     )
     GEMINI_MODEL: str = Field(
         default="gemini-3.1-flash-lite",
         description="Gemini Model Identifier"
     )
+
+    @property
+    def gemini_keys(self) -> List[str]:
+        """Returns all configured unique Gemini API keys for rotation."""
+        import re
+        raw_keys = f"{self.GEMINI_API_KEYS},{self.GEMINI_API_KEY}"
+        parts = re.split(r"[,;\n]+", raw_keys)
+        unique_keys: List[str] = []
+        seen = set()
+        for p in parts:
+            clean = p.strip().strip("'\"")
+            if clean and clean not in seen:
+                seen.add(clean)
+                unique_keys.append(clean)
+        return unique_keys
     
     # CORS
     CORS_ORIGINS: Union[List[str], str] = [

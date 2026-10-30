@@ -47,16 +47,68 @@ def _get_cached_opportunities() -> list:
 
 class GeminiService:
     def __init__(self):
-        self._client: Optional[genai.Client] = None
+        self._clients: Dict[str, genai.Client] = {}
+        self._key_index: int = 0
+        self._key_cooldowns: Dict[str, float] = {}
 
-    def get_client(self) -> genai.Client:
-        """Returns initialized GenAI client or raises error if API key is not configured."""
-        api_key = settings.GEMINI_API_KEY.strip() if settings.GEMINI_API_KEY else ""
-        if not api_key:
-            raise ValueError(
-                "Gemini API key is not configured. Please set 'GEMINI_API_KEY' in your backend/.env file."
-            )
-        return genai.Client(api_key=api_key)
+    def get_configured_keys(self) -> List[str]:
+        """Returns all configured Gemini API keys."""
+        return settings.gemini_keys
+
+    def get_available_keys(self) -> List[str]:
+        """
+        Returns configured API keys ordered by round-robin rotation,
+        prioritizing keys that are not currently on cooldown.
+        """
+        all_keys = self.get_configured_keys()
+        if not all_keys:
+            return []
+
+        now = time.monotonic()
+        # Clean up expired cooldowns
+        expired = [k for k, expire_time in self._key_cooldowns.items() if now >= expire_time]
+        for k in expired:
+            self._key_cooldowns.pop(k, None)
+
+        # Rotate list starting from current round-robin index
+        idx = self._key_index % len(all_keys)
+        rotated = all_keys[idx:] + all_keys[:idx]
+
+        # Prioritize active keys over cooled-down ones
+        active = [k for k in rotated if k not in self._key_cooldowns]
+        cooled = [k for k in rotated if k in self._key_cooldowns]
+        return active if active else cooled
+
+    def mark_key_rate_limited(self, api_key: str, cooldown_seconds: float = 8.0):
+        """Marks an API key on cooldown due to rate limiting or temporary quota exhaustion."""
+        self._key_cooldowns[api_key] = time.monotonic() + cooldown_seconds
+        masked = f"...{api_key[-6:]}" if len(api_key) > 6 else "***"
+        logger.warning(
+            "Gemini API key %s temporarily rate-limited; placed on cooldown for %ss.",
+            masked,
+            cooldown_seconds
+        )
+
+    def advance_key(self):
+        """Advances round-robin pointer to distribute load across keys."""
+        keys = self.get_configured_keys()
+        if keys:
+            self._key_index = (self._key_index + 1) % len(keys)
+
+    def get_client(self, api_key: Optional[str] = None) -> genai.Client:
+        """Returns initialized GenAI client for the given key or next available rotated key."""
+        target_key = api_key
+        if not target_key:
+            available = self.get_available_keys()
+            if not available:
+                raise ValueError(
+                    "Gemini API key is not configured. Please set 'GEMINI_API_KEY' or 'GEMINI_API_KEYS' in your backend/.env file."
+                )
+            target_key = available[0]
+
+        if target_key not in self._clients:
+            self._clients[target_key] = genai.Client(api_key=target_key)
+        return self._clients[target_key]
 
     def build_system_instruction(self, user_id: Optional[str] = None) -> str:
         """
@@ -165,8 +217,13 @@ class GeminiService:
         messages: List[Dict[str, str]],
         user_id: Optional[str] = None
     ) -> Dict[str, Any]:
-        """Asynchronously generates conversational response using Gemini with automatic fallback on 503."""
-        client = self.get_client()
+        """Asynchronously generates conversational response using Gemini with automatic key rotation and model fallback."""
+        keys = self.get_available_keys()
+        if not keys:
+            raise ValueError(
+                "Gemini API key is not configured. Please set 'GEMINI_API_KEY' or 'GEMINI_API_KEYS' in your backend/.env file."
+            )
+
         system_instruction = self.build_system_instruction(user_id)
         contents = self.format_contents(messages)
 
@@ -184,27 +241,54 @@ class GeminiService:
         unique_models = [m for m in models_to_try if not (m in seen or seen.add(m))]
 
         last_error = None
-        for model_name in unique_models:
-            try:
-                response = await client.aio.models.generate_content(
-                    model=model_name,
-                    contents=contents,
-                    config=config
-                )
-                reply_text = response.text or ""
-                return {
-                    "role": "assistant",
-                    "content": reply_text.strip(),
-                    "model": model_name
-                }
-            except Exception as e:
-                last_error = e
-                err_msg = str(e)
-                if "503" in err_msg or "UNAVAILABLE" in err_msg or "high demand" in err_msg:
-                    logger.warning(f"Model {model_name} is experiencing high demand (503), attempting fallback...")
-                    continue
-                else:
-                    raise self._handle_gemini_error(e)
+        for api_key in keys:
+            client = self.get_client(api_key)
+            masked = f"...{api_key[-6:]}" if len(api_key) > 6 else "***"
+            rotate_to_next_key = False
+
+            for model_name in unique_models:
+                try:
+                    response = await client.aio.models.generate_content(
+                        model=model_name,
+                        contents=contents,
+                        config=config
+                    )
+                    reply_text = response.text or ""
+                    # On successful response, advance round-robin pointer for next call
+                    self.advance_key()
+                    return {
+                        "role": "assistant",
+                        "content": reply_text.strip(),
+                        "model": model_name
+                    }
+                except Exception as e:
+                    last_error = e
+                    err_msg = str(e)
+                    # Detect rate limits (429 / RESOURCE_EXHAUSTED / quota) or invalid key
+                    if any(term in err_msg.lower() for term in ["429", "resource_exhausted", "quota", "rate limit"]):
+                        logger.warning(
+                            "Key %s hit rate limit or quota (%s). Placing on cooldown and rotating to next key...",
+                            masked, e
+                        )
+                        self.mark_key_rate_limited(api_key, cooldown_seconds=8.0)
+                        rotate_to_next_key = True
+                        break
+                    elif "api_key_invalid" in err_msg.lower() or ("400" in err_msg and "key" in err_msg.lower()) or "403" in err_msg or "permission_denied" in err_msg.lower() or "billing" in err_msg.lower() or "project-unavailable" in err_msg.lower():
+                        logger.warning("Key %s is invalid or lacks billing/permission (403). Placing on cooldown and rotating...", masked)
+                        self.mark_key_rate_limited(api_key, cooldown_seconds=3600.0)
+                        rotate_to_next_key = True
+                        break
+                    elif "503" in err_msg or "unavailable" in err_msg.lower() or "high demand" in err_msg.lower():
+                        logger.warning(
+                            "Model %s with key %s experiencing high demand (503), attempting fallback model...",
+                            model_name, masked
+                        )
+                        continue
+                    else:
+                        raise self._handle_gemini_error(e)
+
+            if not rotate_to_next_key and len(keys) > 1:
+                logger.warning("All models busy with key %s; attempting next rotated key...", masked)
 
         raise self._handle_gemini_error(last_error)
 
@@ -213,8 +297,12 @@ class GeminiService:
         messages: List[Dict[str, str]],
         user_id: Optional[str] = None
     ) -> AsyncGenerator[str, None]:
-        """Streams conversation response chunks formatted as Server-Sent Events (SSE)."""
-        client = self.get_client()
+        """Streams conversation response chunks formatted as Server-Sent Events (SSE) with key rotation."""
+        keys = self.get_available_keys()
+        if not keys:
+            yield f"data: {json.dumps({'error': 'No Gemini API keys are configured.'})}\n\n"
+            return
+
         system_instruction = self.build_system_instruction(user_id)
         contents = self.format_contents(messages)
 
@@ -234,27 +322,46 @@ class GeminiService:
 
         response_stream = None
         active_model = settings.GEMINI_MODEL
-        for model_name in unique_models:
-            try:
-                active_model = model_name
-                response_stream = await client.aio.models.generate_content_stream(
-                    model=model_name,
-                    contents=contents,
-                    config=config
-                )
+
+        for api_key in keys:
+            client = self.get_client(api_key)
+            masked = f"...{api_key[-6:]}" if len(api_key) > 6 else "***"
+
+            for model_name in unique_models:
+                try:
+                    active_model = model_name
+                    response_stream = await client.aio.models.generate_content_stream(
+                        model=model_name,
+                        contents=contents,
+                        config=config
+                    )
+                    self.advance_key()
+                    break
+                except Exception as e:
+                    err_msg = str(e)
+                    if any(term in err_msg.lower() for term in ["429", "resource_exhausted", "quota", "rate limit"]):
+                        logger.warning(
+                            "Key %s hit rate limit during stream setup. Rotating to next key...", masked
+                        )
+                        self.mark_key_rate_limited(api_key, cooldown_seconds=8.0)
+                        break
+                    elif "api_key_invalid" in err_msg.lower() or ("400" in err_msg and "key" in err_msg.lower()) or "403" in err_msg or "permission_denied" in err_msg.lower() or "billing" in err_msg.lower() or "project-unavailable" in err_msg.lower():
+                        logger.warning("Key %s is invalid or lacks billing/permission (403) during stream. Rotating...", masked)
+                        self.mark_key_rate_limited(api_key, cooldown_seconds=3600.0)
+                        break
+                    elif "503" in err_msg or "unavailable" in err_msg.lower() or "high demand" in err_msg.lower():
+                        logger.warning("Streaming model %s unavailable (503), trying fallback...", model_name)
+                        continue
+                    else:
+                        clean_error = str(self._handle_gemini_error(e))
+                        yield f"data: {json.dumps({'error': clean_error})}\n\n"
+                        return
+
+            if response_stream is not None:
                 break
-            except Exception as e:
-                err_msg = str(e)
-                if "503" in err_msg or "UNAVAILABLE" in err_msg or "high demand" in err_msg:
-                    logger.warning(f"Streaming model {model_name} unavailable (503), trying fallback...")
-                    continue
-                else:
-                    clean_error = str(self._handle_gemini_error(e))
-                    yield f"data: {json.dumps({'error': clean_error})}\n\n"
-                    return
 
         if response_stream is None:
-            yield f"data: {json.dumps({'error': 'Gemini service is currently unavailable. Please try again shortly.'})}\n\n"
+            yield f"data: {json.dumps({'error': 'Gemini service is currently unavailable across all configured API keys and models. Please try again shortly.'})}\n\n"
             return
 
         try:
@@ -275,20 +382,23 @@ class GeminiService:
             return e
 
         err_str = str(e)
+        key_count = len(self.get_configured_keys())
+        suffix = f" (across {key_count} configured key{'s' if key_count > 1 else ''})" if key_count > 1 else ""
+
         if "API_KEY_INVALID" in err_str or "invalid api key" in err_str.lower() or ("400" in err_str and "key" in err_str.lower()):
             return HTTPException(
                 status_code=401,
-                detail="The configured Gemini API key is invalid or unauthorized. Please check GEMINI_API_KEY in backend/.env."
+                detail="The configured Gemini API key is invalid or unauthorized. Please check GEMINI_API_KEY or GEMINI_API_KEYS in backend/.env."
             )
-        elif "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
+        elif "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or "quota" in err_str.lower():
             return HTTPException(
                 status_code=429,
-                detail="Gemini API rate limit or quota reached. Please wait a moment and try again."
+                detail=f"Gemini API rate limit or quota reached{suffix}. Please wait a moment or add additional keys to GEMINI_API_KEYS for rotation."
             )
-        elif "503" in err_str or "UNAVAILABLE" in err_str or "high demand" in err_str:
+        elif "503" in err_str or "UNAVAILABLE" in err_str or "high demand" in err_str.lower():
             return HTTPException(
                 status_code=503,
-                detail="Google Gemini AI service is momentarily experiencing high demand. Please try again in a few seconds."
+                detail=f"Google Gemini AI service is momentarily experiencing high demand{suffix}. Please try again in a few seconds."
             )
         elif "404" in err_str and "model" in err_str.lower():
             return HTTPException(
@@ -296,6 +406,7 @@ class GeminiService:
                 detail=f"The configured model '{settings.GEMINI_MODEL}' is not accessible. Please check GEMINI_MODEL in backend/.env."
             )
         return HTTPException(status_code=500, detail=f"Gemini AI Assistant error: {err_str}")
+
 
 
 gemini_service = GeminiService()

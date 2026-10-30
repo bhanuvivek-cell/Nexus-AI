@@ -51,8 +51,11 @@ export const FloatingAssistantButton: React.FC = () => {
     const headers: Record<string, string> = { 'Content-Type': 'application/json' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
-    // Keep only last 10 messages to limit prompt size
-    const apiHistory = updated.slice(-10).map((m) => ({ role: m.role, content: m.content }));
+    // Keep only last 10 messages, skipping the static initial greeting, to limit prompt size
+    const apiHistory = updated
+      .filter((m) => m.id !== 'quick-1')
+      .slice(-10)
+      .map((m) => ({ role: m.role, content: m.content }));
 
     const assistantMsgId = `a-${Date.now()}`;
 

@@ -54,3 +54,40 @@ def test_assistant_chat_general_and_coding():
 def test_assistant_empty_message_validation():
     res = client.post("/api/v1/assistant/chat", json={"messages": []})
     assert res.status_code == 422
+
+
+def test_gemini_key_rotation_logic(monkeypatch):
+    from app.services.gemini_service import GeminiService
+
+    # Test settings key parsing
+    monkeypatch.setattr(settings, "GEMINI_API_KEY", "key_alpha, key_beta")
+    monkeypatch.setattr(settings, "GEMINI_API_KEYS", "key_gamma; key_alpha\nkey_delta")
+    keys = settings.gemini_keys
+    # Should deduplicate and strip whitespace
+    assert keys == ["key_gamma", "key_alpha", "key_delta", "key_beta"]
+
+    # Test GeminiService rotation and cooldown
+    svc = GeminiService()
+    monkeypatch.setattr(settings, "GEMINI_API_KEYS", "k1, k2, k3")
+    monkeypatch.setattr(settings, "GEMINI_API_KEY", "")
+
+    # Initial order should be k1, k2, k3
+    assert svc.get_available_keys() == ["k1", "k2", "k3"]
+
+    # Advance pointer
+    svc.advance_key()
+    assert svc.get_available_keys() == ["k2", "k3", "k1"]
+
+    # Mark k2 rate-limited with cooldown
+    svc.mark_key_rate_limited("k2", cooldown_seconds=30.0)
+    # Available active keys should prioritize non-cooled keys
+    available = svc.get_available_keys()
+    assert available[0] in ("k3", "k1")
+    assert "k2" in available  # Still present as fallback at the end
+
+    # Test status endpoint with multiple keys
+    res = client.get("/api/v1/assistant/status")
+    assert res.status_code == 200
+    data = res.json()
+    assert data["key_count"] == 3
+    assert data["rotation_enabled"] is True

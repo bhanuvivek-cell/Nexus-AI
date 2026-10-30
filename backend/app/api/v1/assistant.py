@@ -32,15 +32,19 @@ class AssistantStatusSchema(BaseModel):
     configured: bool
     model: str
     service: str = "Google Gemini AI"
+    key_count: int = 0
+    rotation_enabled: bool = False
 
 
 @router.get("/status", response_model=AssistantStatusSchema, summary="Check Gemini AI Assistant availability")
 async def get_assistant_status():
-    """Returns whether Gemini API is configured and which model is active, without exposing secrets."""
-    has_key = bool(settings.GEMINI_API_KEY and settings.GEMINI_API_KEY.strip())
+    """Returns whether Gemini API is configured, key count, and rotation status without exposing secrets."""
+    keys = settings.gemini_keys
     return AssistantStatusSchema(
-        configured=has_key,
-        model=settings.GEMINI_MODEL
+        configured=len(keys) > 0,
+        model=settings.GEMINI_MODEL,
+        key_count=len(keys),
+        rotation_enabled=len(keys) > 1
     )
 
 

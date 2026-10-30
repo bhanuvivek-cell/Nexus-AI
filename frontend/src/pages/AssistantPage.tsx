@@ -74,6 +74,10 @@ How can I help you today?`,
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [modelName, setModelName] = useState<string>('gemini-3.1-flash-lite');
+  const [rotationInfo, setRotationInfo] = useState<{ enabled: boolean; keyCount: number }>({
+    enabled: false,
+    keyCount: 0,
+  });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -95,6 +99,9 @@ How can I help you today?`,
           const data = await res.json();
           if (data.model) {
             setModelName(data.model);
+          }
+          if (data.rotation_enabled) {
+            setRotationInfo({ enabled: true, keyCount: data.key_count || 0 });
           }
         }
       } catch (err) {
@@ -270,6 +277,11 @@ How can I help you today?`,
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-saffron-100 text-saffron-800 uppercase tracking-wider font-mono">
                 {modelName}
               </span>
+              {rotationInfo.enabled && (
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 tracking-wide font-mono flex items-center gap-1" title="API Key Rotation Active">
+                  <span>🔄</span> {rotationInfo.keyCount} Keys Rotated
+                </span>
+              )}
             </div>
             <p className="text-xs text-slate-500">
               General Intelligence, Programming & Grounded Career Mentorship

@@ -148,7 +148,8 @@ Then run `start-dev.bat` again.
 | Error | Fix |
 |---|---|
 | `No module named 'app'` | Make sure you `cd backend` before running uvicorn |
-| `GEMINI_API_KEY is not set` | Check `backend\.env` contains `GEMINI_API_KEY=your_key` |
+| `GEMINI_API_KEY is not set` | Check `backend\.env` contains `GEMINI_API_KEY=your_key` or `GEMINI_API_KEYS=key1,key2...` |
+| `API rate limit / 429` | Add multiple keys to `GEMINI_API_KEYS=k1,k2,k3` for automatic rotation & failover |
 | `Address already in use` | Run `stop-dev.bat` then retry |
 | `ModuleNotFoundError: fastapi` | Run `.venv\Scripts\pip install -r requirements.txt` |
 
