@@ -14,7 +14,7 @@ const normalizeApiBaseUrl = (url: string): string => {
 const rawBaseUrl =
   (import.meta.env as any).API_BASE_URL ||
   import.meta.env.VITE_API_BASE_URL ||
-  (import.meta.env.DEV ? 'http://127.0.0.1:8000/api/v1' : 'https://nexus-ai-backend-vj50.onrender.com/api/v1');
+  (import.meta.env.DEV ? 'http://127.0.0.1:8000/api/v1' : 'https://nexus-ai-u8bu.onrender.com/api/v1');
 
 export const API_BASE_URL = normalizeApiBaseUrl(rawBaseUrl);
 

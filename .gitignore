@@ -58,3 +58,5 @@ $RECYCLE.BIN/
 
 # Antigravity artifacts
 .gemini/
+.vercel
+.env*
